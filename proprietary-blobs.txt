@@ -869,7 +869,7 @@ vendor/lib64/drm/libdrmclearkeyplugin.so
 app/LetvRemoteControl_preinstall/LetvRemoteControl_preinstall.apk
 app/LetvRemoteControl_preinstall/lib/arm/libbvfixed.so
 app/LetvRemoteControl_preinstall/lib/arm/libyzs_usc.so
-app/UEIQuicksetSDKLeTV/UEIQuicksetSDKLeTV.apk
+app/UEIQuicksetSDKletv/UEIQuicksetSDKletv.apk
 lib64/hw/keystore.mt6795.so
 lib/hw/keystore.mt6795.so
 lib/libdlna.so

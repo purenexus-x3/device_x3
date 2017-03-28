@@ -1,6 +1,6 @@
--include vendor/LeTV/x500/BoardConfigVendor.mk
+-include vendor/letv/x3/BoardConfigVendor.mk
 
-LOCAL_PATH := device/LeTV/x500
+LOCAL_PATH := device/letv/x3
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
@@ -47,14 +47,15 @@ TARGET_BOOTLOADER_BOARD_NAME := mt6795
 
 # EXT4
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # MTK Hardware
-#BOARD_USES_MTK_HARDWARE := true
+BOARD_USES_MTK_HARDWARE := true
 BOARD_HAS_MTK_HARDWARE := true
 MTK_HARDWARE := true
-#BOARD_USES_LEGACY_MTK_AV_BLOB := true
+BOARD_USES_LEGACY_MTK_AV_BLOB := true
 #COMMON_GLOBAL_CFLAGS += -DMTK_HARDWARE -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL -DDISABLE_ASHMEM_TRACKING
 #COMMON_GLOBAL_CFLAGS += -DMTK_AOSP_ENHANCEMENT
 #COMMON_GLOBAL_CPPFLAGS += -DMTK_AOSP_ENHANCEMENT
@@ -75,7 +76,7 @@ BOARD_DISABLE_HW_ID_MATCH_CHECK := true;
 
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.verifiedbootstate=green
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := \
@@ -85,18 +86,7 @@ BOARD_MKBOOTIMG_ARGS := \
 	--ramdisk_offset 0x03f88000 \
 	--second_offset 0x00e88000 \
 	--tags_offset 0x0df88000 \
-	--board WisniaPL
-#prebuilt
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
-#source
-TARGET_KERNEL_SOURCE := kernel/LeTV/x500
-TARGET_KERNEL_CONFIG := x500_defconfig
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-
-# build old-style zip files (required for ota updater)
-BLOCK_BASED_OTA := false
-
+	--board DroidThug
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
 
@@ -132,7 +122,7 @@ USE_XML_AUDIO_POLICY_CONF := 1
 
 # RIL
 #BOARD_PROVIDES_RILD := true
-BOARD_RIL_CLASS := ../../../device/LeTV/x500/ril
+BOARD_RIL_CLASS := ../../../device/letv/x3/ril
 BOARD_CONNECTIVITY_MODULE := conn_soc
 
 # Display
@@ -143,7 +133,6 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
-#TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/i2c-2/2-004b/wake_gesture_enable"
 
 # Wifi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -185,7 +174,7 @@ TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # SELinux
 BOARD_SEPOLICY_DIRS := \
-    device/LeTV/x500/sepolicy
+    device/letv/x3/sepolicy
 
 # Seccomp Filter
 BOARD_SECCOMP_POLICY := \
@@ -200,11 +189,9 @@ BOARD_MEDIATEK_USES_GPS := true
 #TARGET_PROVIDES_KEYMASTER := true
 
 # Camera
-#TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
-#Hack for prebuilt kernel
-ifeq ($(TARGET_DEVICE),x500)
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/Image.gz-dtb
+TARGET_KERNEL_APPEND_DTB := true
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
 $(shell touch $(OUT)/obj/KERNEL_OBJ/usr/export_includes)
-endif
-

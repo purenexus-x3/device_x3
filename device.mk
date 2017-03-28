@@ -16,29 +16,25 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-3072-hwui
 $(call inherit-product, device/common/gps/gps_us_supl.mk) 
 
 # Vendor
-$(call inherit-product, vendor/LeTV/x500/x500-vendor-blobs.mk)
+$(call inherit-product, vendor/letv/x3/x3-vendor-blobs.mk)
 
 # Overlay Folder
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Folder path
-LOCAL_PATH := device/LeTV/x500
+LOCAL_PATH := device/letv/x3
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
-TARGET_OTA_ASSERT_DEVICE := x3,X500,X507,X509,X3,x500,x507,x509,X502,x502
+TARGET_OTA_ASSERT_DEVICE := x3,X500,X507,X509,X3,x3,x507,x509,X502,x502
 
 # Power
 PRODUCT_PACKAGES += \
     power.default \
     power.mt6795
-
-# Camera
-PRODUCT_PACKAGES += \
-    Snap 
 
 # Charger
 PRODUCT_PACKAGES += \
